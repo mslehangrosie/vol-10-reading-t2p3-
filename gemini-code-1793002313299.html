@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading Mock Test - Ms Lê Hằng English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #464646;
+            --primary-light: #f4f6f9;
+            --accent: #2196f3;
+            --success: #2e7d32;
+            --success-bg: #e8f5e9;
+            --error: #c62828;
+            --error-bg: #ffebee;
+            --warning: #ed6c02;
+            --bg-main: #f8f9fa;
+            --border: #dce1e7;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+            --highlight-bg: #b39ddb;
+            --highlight-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            user-select: text;
+        }
+
+        ::selection {
+            background-color: var(--highlight-bg);
+            color: var(--highlight-color);
+        }
+
+        /* --- Header Styles --- */
+        header {
+            background: #ffffff;
+            border-bottom: 2px solid var(--border);
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .teacher-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #1976d2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .test-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--text-dark);
+        }
+
+        .ad-banner {
+            font-size: 0.82rem;
+            background: #fff3e0;
+            color: #e65100;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid #ffe0b2;
+            font-weight: 700;
+        }
+
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .timer-display {
+            font-size: 1.3rem;
+            font-weight: 800;
+            font-family: monospace;
+            background: #263238;
+            color: #00e676;
+            padding: 4px 14px;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .btn-3d {
+            background: #ffffff;
+            border: 2px solid #cfd8dc;
+            border-bottom-width: 4px;
+            border-radius: 12px;
+            padding: 8px 16px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            color: var(--text-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-3d:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .btn-primary {
+            background: #1976d2;
+            color: white;
+            border-color: #1565c0;
+        }
+
+        .btn-success {
+            background: #2e7d32;
+            color: white;
+            border-color: #1b5e20;
+        }
+
+        .btn-warning {
+            background: #ed6c02;
+            color: white;
+            border-color: #e65100;
+        }
+
+        /* --- Progress Bar --- */
+        .progress-bar-container {
+            height: 6px;
+            background: #e0e0e0;
+            width: 100%;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            transition: width 0.3s ease;
+        }
+
+        /* --- Split Screen Layout --- */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .pane {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .pane-left {
+            background: #ffffff;
+            border-right: 2px solid var(--border);
+        }
+
+        .pane-right {
+            background: #f8f9fa;
+        }
+
+        /* --- Reading Passage Styling --- */
+        .passage-quote {
+            background: #f5f5f5;
+            border-left: 4px solid #1976d2;
+            padding: 12px 16px;
+            font-style: italic;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .paragraph-block {
+            margin-bottom: 24px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        .paragraph-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .paragraph-tag {
+            font-weight: 800;
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .paragraph-text {
+            line-height: 1.7;
+            font-size: 1rem;
+            color: #37474f;
+        }
+
+        .translation-box {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: #f0f4c3;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            color: #33691e;
+            line-height: 1.6;
+            border: 1px dashed #c0ca33;
+        }
+
+        .btn-toggle-trans {
+            background: none;
+            border: none;
+            color: #1976d2;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .btn-toggle-trans:hover {
+            background: #e3f2fd;
+        }
+
+        /* --- Glossary Section --- */
+        .glossary-section {
+            margin-top: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .glossary-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #1565c0;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .glossary-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .glossary-table th, .glossary-table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        .glossary-table th {
+            background: #f5f5f5;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .glossary-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        /* --- Questions Section --- */
+        .question-group {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .group-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #1976d2;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 8px;
+        }
+
+        .question-item {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .question-text {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .select-custom {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 2px solid #cfd8dc;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.9rem;
+            background: white;
+            outline: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .select-custom:focus {
+            border-color: var(--accent);
+        }
+
+        /* MCQ Options */
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mcq-option {
+            padding: 10px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mcq-option:hover {
+            background: #f5f5f5;
+            border-color: #bdbdbd;
+        }
+
+        .mcq-option.selected-correct {
+            background: var(--success-bg) !important;
+            border-color: var(--success) !important;
+            color: var(--success) !important;
+        }
+
+        .mcq-option.selected-wrong {
+            background: var(--error-bg) !important;
+            border-color: var(--error) !important;
+            color: var(--error) !important;
+        }
+
+        /* Explanations */
+        .explanation-card {
+            display: none;
+            margin-top: 12px;
+            background: #f8f9fa;
+            border: 1px solid #dce1e7;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 0.88rem;
+        }
+
+        .exp-section {
+            margin-bottom: 8px;
+        }
+
+        .exp-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-title {
+            font-weight: 800;
+            color: #37474f;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+
+        }
+
+        .btn-locate {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-top: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-locate:hover {
+            background: #bbdefb;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .score-big {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #1976d2;
+            margin: 10px 0;
+        }
+
+        .band-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 800;
+            font-size: 1.5rem;
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+            border: 2px solid #a5d6a7;
+        }
+
+        .feedback-text {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Target Highlight Effect */
+        .target-highlight {
+            animation: pulseHighlight 2s ease;
+            background-color: #fff9c4 !important;
+            border-radius: 4px;
+        }
+
+        @keyframes pulseHighlight {
+            0% { background-color: #ffe082; }
+            100% { background-color: transparent; }
+        }
+
+        /* Canvas Confetti */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Header -->
+    <header>
+        <div class="brand-info">
+            <span class="teacher-tag">Giáo viên tạo: Ms Lê Hằng English</span>
+            <span class="test-title">IELTS READING MOCK TEST</span>
+        </div>
+        
+        <div class="ad-banner">
+            📞 Đăng kí học tiếng anh 1-12, IELTS vui lòng liên hệ Ms Lê Hằng, zalo 0584 965 348.
+        </div>
+
+        <div class="timer-container">
+            <div class="timer-display" id="timer">20:00</div>
+            <button class="btn-3d btn-warning" id="btn-timer-toggle" onclick="toggleTimer()">▶ BẮT ĐẦU TÍNH GIỜ LÀM BÀI</button>
+            <button class="btn-3d btn-success" onclick="submitTest()">NỘP BÀI</button>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+
+    <!-- Main Content Split Screen -->
+    <div class="main-container">
+        
+        <!-- Left Pane: Reading Passage -->
+        <div class="pane pane-left" id="passage-pane">
+            <h2 style="font-weight: 900; color: #1565c0; margin-bottom: 12px;">LOSS OF RARE LANGUAGES</h2>
+            
+            <div class="passage-quote">
+                "Obviously we must do some serious rethinking of our priorities, lest linguistics go down in history as the only science that presided obviously over the disappearance of 90 percent of the very field to which it is dedicated." - Michael Krauss, The World's languages in Crisis
+            </div>
+
+            <!-- Paragraph 27 (A) -->
+            <div class="paragraph-block" id="para-27">
+                <div class="paragraph-header">
+                    <span class="paragraph-tag">Đoạn 27 (Paragraph A)</span>
+                    <button class="btn-toggle-trans" onclick="toggleTranslation('trans-27')">Mở dịch đoạn này 🌟</button>
+                </div>
+                <div class="paragraph-text">
+                    Ten years ago, Michael Krauss sent a shudder through the discipline of linguistics with his prediction that half the 6,000 or so languages spoken in the world would cease to be uttered within a century. Unless scientists and community leaders directed a worldwide effort to stabilize the decline of local languages, he warned, nine tenths of the linguistic diversity of humankind would probably be doomed to extinction. Krauss's prediction was little more than an educated guess, but other respected linguists had been clanging out similar alarms. Keneth L. Hale of the Massachusetts Institute of Technology noted in the same journal issue that eight languages on which he had done fieldwork had since passed into extinction. A 1990 survey in Australia found that 70 of the 90 surviving Aboriginal languages were no longer used regularly by all age groups. The same was true for all but 20 of the 175 Native American languages spoken or remembered in the US, Krauss told a congressional panel in 1992.
+                </div>
+                <div class="translation-box" id="trans-27">
+                    <strong>Dịch nghĩa:</strong> Mười năm trước, Michael Krauss đã gây ra một sự chấn động trong ngành ngôn ngữ học với dự đoán rằng một nửa trong số khoảng 6.000 ngôn ngữ được nói trên thế giới sẽ ngừng được sử dụng trong vòng một thế kỷ. Ông cảnh báo trừ khi các nhà khoa học và lãnh đạo cộng đồng chỉ đạo một nỗ lực trên toàn thế giới nhằm ổn định sự suy giảm của các ngôn ngữ địa phương, chín phần mười sự đa dạng ngôn ngữ của nhân loại có thể sẽ phải chịu số phận diệt vong. Dự đoán của Krauss chỉ là một sự đoán chừng có cơ sở, nhưng các nhà ngôn ngữ học uy tín khác cũng đã đưa ra những cảnh báo tương tự. Keneth L. Hale thuộc Viện Công nghệ Massachusetts lưu ý trong cùng một số tạp chí rằng 8 ngôn ngữ mà ông từng nghiên cứu thực địa đã bị tuyệt chủng kể từ đó. Một cuộc khảo sát năm 1990 ở Úc cho thấy 70 trong số 90 ngôn ngữ thổ dân còn tồn tại không còn được tất cả các nhóm tuổi sử dụng thường xuyên. Điều tương tự cũng đúng với tất cả ngoại trừ 20 trong số 175 ngôn ngữ thổ dân châu Mỹ được nói hoặc được nhớ tới ở Mỹ, Krauss nói với một ủy ban quốc hội vào năm 1992.
+                </div>
+            </div>
+
+            <!-- Paragraph 28 (B) -->
+            <div class="paragraph-block" id="para-28">
+                <div class="paragraph-header">
+                    <span class="paragraph-tag">Đoạn 28 (Paragraph B)</span>
+                    <button class="btn-toggle-trans" onclick="toggleTranslation('trans-28')">Mở dịch đoạn này 🌟</button>
+                </div>
+                <div class="paragraph-text">
+                    Many experts in the field mourn the loss of rare languages, for several reasons. To start, there is scientific self-interest; some of the most basic questions in linguistics have to do with the limits of human speech, which are far from fully explored. Many researchers would like to know which structural elements of grammar and vocabulary—If any—are truly universal and probably therefore hardwired into the human brain. Other scientists try to reconstruct ancient migration patterns by comparing borrowed words that appear in otherwise unrelated languages, in each of these cases, the wider the portfolio of languages you study, the more likely you are to get the right answers.
+                </div>
+                <div class="translation-box" id="trans-28">
+                    <strong>Dịch nghĩa:</strong> Nhiều chuyên gia trong lĩnh vực này than khóc cho sự mất mát của các ngôn ngữ hiếm vì một số lý do. Đầu tiên, có lợi ích khoa học vị kỷ; một số câu hỏi cơ bản nhất trong ngôn ngữ học có liên quan đến các giới hạn của lời nói con người, điều mà vẫn chưa được khám phá đầy đủ. Nhiều nhà nghiên cứu muốn biết yếu tố cấu trúc nào của ngữ pháp và từ vựng - nếu có - là thực sự phổ quát và do đó có thể được kết nối cứng (bẩm sinh) vào não bộ con người. Các nhà khoa học khác cố gắng tái tạo lại các mô hình di cư cổ đại bằng cách so sánh các từ mượn xuất hiện trong các ngôn ngữ vốn không liên quan, trong mỗi trường hợp này, danh mục ngôn ngữ bạn nghiên cứu càng rộng thì bạn càng có nhiều khả năng nhận được câu trả lời đúng.
+                </div>
+            </div>
+
+            <!-- Paragraph Example/28.5 (C) -->
+            <div class="paragraph-block" id="para-example">
+                <div class="paragraph-header">
+                    <span class="paragraph-tag">Đoạn C (Ví dụ: vi)</span>
+                    <button class="btn-toggle-trans" onclick="toggleTranslation('trans-ex')">Mở dịch đoạn này 🌟</button>
+                </div>
+                <div class="paragraph-text">
+                    <em>Example: vi) A period when there was an absence of real efforts made.</em><br>
+                    Despite the near constant buzz in linguistics about endangered languages over the past 10 years, the field has accomplished depressingly little. "You would think that there would be some organized response to this dire situation 'some attempt to determine which language can be saved and which should be documented before they disappear, " says Sarah G Thomason, a linguist at the University of Michigan at Ann Arbor. But there isn't any such effort organized in the profession. It is only recently that it has become fashionable enough to work on endangered languages." Six years ago, recalls Douglas H. Whalen of Yale University, when I asked linguists who were raising money to deal with these problems, I mostly got blank stares." So, Whalen and a few other linguists founded the Endangered Languages Fund. In the five years to 2001 they were able to collect only $80,000 for research grants. A similar foundation in England, directed by Nicholas Ostler, has raised just $8,000 since 1995.
+                </div>
+                <div class="translation-box" id="trans-ex">
+                    <strong>Dịch nghĩa:</strong> Mặc dù có những xôn xao gần như liên tục trong ngôn ngữ học về các ngôn ngữ bị đe dọa trong 10 năm qua, lĩnh vực này đã đạt được kết quả ít đến mức đáng thất vọng. Sarah G Thomason cho biết: "Bạn sẽ nghĩ rằng sẽ có một số phản ứng có tổ chức đối với tình trạng thảm khốc này 'một số nỗ lực để xác định ngôn ngữ nào có thể được cứu và ngôn ngữ nào nên được ghi lại trước khi chúng biến mất". Nhưng không có nỗ lực nào như vậy được tổ chức trong giới chuyên môn. Chỉ gần đây, việc nghiên cứu các ngôn ngữ bị đe dọa mới trở nên đủ hợp thời." Đã 6 năm trước, Douglas H. Whalen thuộc Đại học Yale nhớ lại, khi tôi hỏi các nhà ngôn ngữ học về việc gây quỹ để giải quyết các vấn đề này, tôi chủ yếu nhận được những cái nhìn ngơ ngác." Vì vậy, Whalen và một vài nhà ngôn ngữ học khác đã thành lập Quỹ Ngôn ngữ Bị đe dọa. Trong 5 năm tính đến năm 2001, họ chỉ thu thập được 80.000 USD cho các khoản tài trợ nghiên cứu. Một quỹ tương tự ở Anh, do Nicholas Ostler điều hành, đã huy động được vỏn vẹn 8.000 USD kể từ năm 1995.
+                </div>
+            </div>
+
+            <!-- Paragraph 29 (D) -->
+            <div class="paragraph-block" id="para-29">
+                <div class="paragraph-header">
+                    <span class="paragraph-tag">Đoạn 29 (Paragraph D)</span>
+                    <button class="btn-toggle-trans" onclick="toggleTranslation('trans-29')">Mở dịch đoạn này 🌟</button>
+                </div>
+                <div class="paragraph-text">
+                    But there are encouraging signs that the field has turned a corner. The Volkswagen Foundation, a German charity, just issued its second round of grants totaling more than $2 million. It has created a multimedia archive at the Max Planck Institute for Psycholinguistics in the Netherlands that can house recordings, grammars, dictionaries and other data on endangered languages. To fill the archive, the foundation has dispatched field linguists to document Aweti (100 or so speakers in Brazil), Ega (about 300 speakers in Ivory Coast). Waima'a (a few hundred speakers in East Timor), and a dozen or so other languages are unlikely to survive the century. The Ford Foundation has also edged into the arena. Its contributions helped to reinvigorate a master-apprentice program created in 1992 by Leanne Hinton of Berkeley and Native Americans worried about the imminent demise of about 50 indigenous languages in California. Fluent speakers receive $3,000 to teach a younger relative (who is also paid) their native tongue through 360 hours of shared activities, spread over six months. So far about 5 teams have completed the program, Hinton says, transmitting at least some knowledge of 25 languages. "It's too early to call this language revitalization," Hinton admits. "In California the death rate of elderly speakers will always be greater than the recruitment rate of young speakers. But at least we prolong the survival of the language." That will give linguists more time to record these tongues before they vanish.
+                </div>
+                <div class="translation-box" id="trans-29">
+                    <strong>Dịch nghĩa:</strong> Nhưng có những dấu hiệu khích lệ cho thấy lĩnh vực này đã bước sang một bước ngoặt. Quỹ Volkswagen, một tổ chức từ thiện của Đức, vừa phát hành đợt tài trợ thứ hai với tổng trị giá hơn 2 triệu USD. Tổ chức đã tạo ra một kho lưu trữ đa phương tiện tại Viện Ngôn ngữ học Tâm lý Max Planck ở Hà Lan có thể chứa các bản ghi âm, ngữ pháp, từ điển và dữ liệu khác về các ngôn ngữ bị đe dọa. Để lấp đầy kho lưu trữ, quỹ đã cử các nhà ngôn ngữ học thực địa đến ghi chép lại tiếng Aweti, Ega, Waima'a và khoảng chục ngôn ngữ khác không có khả năng sống sót qua thế kỷ này. Quỹ Ford cũng đã bước vào đấu trường. Sự đóng góp của nó đã giúp hồi sinh chương trình thầy-trò được tạo ra vào năm 1992 bởi Leanne Hinton của Berkeley và những người Mỹ bản địa lo lắng về sự diệt vong sắp xảy ra của khoảng 50 ngôn ngữ bản địa ở California. Những người nói thành thạo nhận được 3.000 USD để dạy một người họ hàng trẻ hơn ngôn ngữ mẹ đẻ của họ thông qua 360 giờ hoạt động chung, kéo dài trong sáu tháng. Cho đến nay khoảng 5 đội đã hoàn thành chương trình, Hinton nói, truyền lại ít nhất một số kiến thức của 25 ngôn ngữ. Hinton thừa nhận: "Còn quá sớm để gọi đây là sự hồi sinh ngôn ngữ. Ở California, tỷ lệ tử vong của những người nói lớn tuổi sẽ luôn lớn hơn tỷ lệ tuyển dụng những người nói trẻ tuổi. Nhưng ít nhất chúng ta kéo dài sự sống sót của ngôn ngữ." Điều đó sẽ cho các nhà ngôn ngữ học thêm thời gian để ghi chép các tiếng nói này trước khi chúng biến mất.
+                </div>
+            </div>
+
+            <!-- Paragraph 30 (E) -->
+            <div class="paragraph-block" id="para-30">
+                <div class="paragraph-header">
+                    <span class="paragraph-tag">Đoạn 30 (Paragraph E)</span>
+                    <button class="btn-toggle-trans" onclick="toggleTranslation('trans-30')">Mở dịch đoạn này 🌟</button>
+                </div>
+                <div class="paragraph-text">
+                    But the master-apprentice approach hasn't caught on outside the U.S., and Hinton's effort is a drop in the sea. At least 440 languages have been reduced to a mere handful of elders, according to the Ethnologue, a catalogue of languages produced by the Dallas-based group SIL International that comes closest to global coverage. For the vast majority of these languages, there is little or no record of their grammar, vocabulary, pronunciation or use in daily life. Even if a language has been fully documented, all that remains once it vanishes from active use is a fossil skeleton, a scattering of features that the scientist was lucky and astute enough to capture. Linguists may be able to sketch an outline of the forgotten language and fig its place on the evolutionary tree, but little more. "How did people start conversations and talk to babies? How did husbands and wives converse?" Hinton asks. "Those are the first things you want to learn when you want to revitalize the language."
+                </div>
+                <div class="translation-box" id="trans-30">
+                    <strong>Dịch nghĩa:</strong> Nhưng phương pháp tiếp cận thầy-trò đã không được phổ biến bên ngoài nước Mỹ, và nỗ lực của Hinton chỉ là muối bỏ bể. Theo Ethnologue, ít nhất 440 ngôn ngữ đã bị thu hẹp chỉ còn một vài người lớn tuổi sử dụng. Đối với đại đa số các ngôn ngữ này, có rất ít hoặc không có ghi chép nào về ngữ pháp, từ vựng, phát âm hoặc việc sử dụng chúng trong cuộc sống hàng ngày. Ngay cả khi một ngôn ngữ đã được ghi chép đầy đủ, tất cả những gì còn lại một khi nó biến mất khỏi việc sử dụng tích cực chỉ là một khung xương hóa thạch, một vài đặc điểm rải rác mà nhà khoa học may mắn và sắc sảo thu thập được. Các nhà ngôn ngữ học có thể phác thảo một dàn ý về ngôn ngữ bị lãng quên, nhưng không thể làm gì nhiều hơn.
+                </div>
+            </div>
+
+            <!-- Paragraph 31 (F) -->
+            <div class="paragraph-block" id="para-31">
+                <div class="paragraph-header">
+                    <span class="paragraph-tag">Đoạn 31 (Paragraph F)</span>
+                    <button class="btn-toggle-trans" onclick="toggleTranslation('trans-31')">Mở dịch đoạn này 🌟</button>
+                </div>
+                <div class="paragraph-text">
+                    But there is as yet no discipline of "conservation linguistics," as there is for biology. Almost every strategy tried so far has succeeded in some places but failed in others, and there seems to be no way to predict with certainty what will work where. Twenty years ago in New Zealand, Maori speakers set up "language nests," in which preschoolers were immersed in the native language. Additional Maori-only classes were added as the children progressed through elementary and secondary school. A similar approach was tried in Hawaii, with some success—the number of native speakers has stabilized at 1,000 or so, reports Joseph E. Grimes of SIL International, who is working on Oahu. Students can now get instruction in Hawaiian all the way through university.
+                </div>
+                <div class="translation-box" id="trans-31">
+                    <strong>Dịch nghĩa:</strong> Nhưng vẫn chưa có ngành "ngôn ngữ học bảo tồn", giống như sinh học. Hầu như mọi chiến lược đã thử nghiệm cho đến nay đều thành công ở một số nơi nhưng thất bại ở những nơi khác, và dường như không có cách nào để dự đoán chắc chắn điều gì sẽ hoạt động ở đâu. 20 năm trước ở New Zealand, những người nói tiếng Maori đã thành lập các "tổ ngôn ngữ", nơi trẻ mầm non được đắm mình trong ngôn ngữ bản địa. Các lớp học chỉ sử dụng tiếng Maori bổ sung đã được thêm vào khi trẻ em tiến bộ qua trường tiểu học và trung học. Một tiếp cận tương tự đã được thử nghiệm ở Hawaii với một số thành công.
+                </div>
+            </div>
+
+            <!-- Paragraph 32 (G) -->
+            <div class="paragraph-block" id="para-32">
+                <div class="paragraph-header">
+                    <span class="paragraph-tag">Đoạn 32 (Paragraph G)</span>
+                    <button class="btn-toggle-trans" onclick="toggleTranslation('trans-32')">Mở dịch đoạn này 🌟</button>
+                </div>
+                <div class="paragraph-text">
+                    One factor that always seems to occur in the demise of a language is that the speakers begin to have collective doubts about the usefulness of language loyalty. Once they start regarding their own language as inferior to the majority language, people stop using it for all situations. Kids pick up on the attitude and prefer the dominant language. In many cases, people don't notice until they suddenly realize that their kids never speak the language, even at home. This is how Cornish, and some dialects of Scottish Gaelic, are still only rarely used for daily home life in Ireland, 80 years after the republic was founded with Irish as its first official language.
+                </div>
+                <div class="translation-box" id="trans-32">
+                    <strong>Dịch nghĩa:</strong> Một yếu tố dường như luôn xảy ra trong sự diệt vong của một ngôn ngữ là những người nói bắt đầu có sự nghi ngờ tập thể về sự hữu ích của lòng trung thành với ngôn ngữ. Một khi họ bắt đầu coi ngôn ngữ của mình là kém cỏi so với ngôn ngữ đa số, người ta sẽ ngừng sử dụng nó cho mọi tình huống. Trẻ em bắt kịp thái độ đó và ưu tiên ngôn ngữ thống trị.
+                </div>
+            </div>
+
+            <!-- Paragraph 33 (H) -->
+            <div class="paragraph-block" id="para-33">
+                <div class="paragraph-header">
+                    <span class="paragraph-tag">Đoạn 33 (Paragraph H)</span>
+                    <button class="btn-toggle-trans" onclick="toggleTranslation('trans-33')">Mở dịch đoạn này 🌟</button>
+                </div>
+                <div class="paragraph-text">
+                    Linguists agree that ultimately, the answer to the problem of language extinction is multilingualism. Even uneducated people can learn several languages, as long as they start as children. Indeed, most people in the world speak more than one tongue, and in places such as Cameroon (279 languages), Papua New Guinea (823) and India (387) it is common to speak three or four distinct languages and a dialect or two as well. Most Americans and Canadians, to the west of Quebec, have a gut reaction that anyone speaking another language in front of them is committing an immoral act. You get the same reaction in Australia and Russia. It is no coincidence that these are the areas where languages are disappearing the fastest. The first step in saving dying languages is to persuade the world's majorities to allow the minorities among them to speak with their own voices.
+                </div>
+                <div class="translation-box" id="trans-33">
+                    <strong>Dịch nghĩa:</strong> Các nhà ngôn ngữ học đồng ý rằng cuối cùng, câu trả lời cho vấn đề tuyệt chủng ngôn ngữ là sự đa ngôn ngữ. Ngay cả những người không có học vấn cũng có thể học vài ngôn ngữ, miễn là họ bắt đầu từ khi còn nhỏ. Bước đầu tiên trong việc cứu các ngôn ngữ đang hấp hối là thuyết phục đa số trên thế giới cho phép các dân tộc thiểu số giữa họ nói bằng tiếng nói riêng của họ.
+                </div>
+            </div>
+
+            <!-- Glossary -->
+            <div class="glossary-section">
+                <div class="glossary-title">📚 BẢNG TỪ VỰNG ACADEMIC (GLOSSARY)</div>
+                <table class="glossary-table">
+                    <thead>
+                        <tr>
+                            <th>Từ vựng</th>
+                            <th>Loại từ</th>
+                            <th>Nghĩa tiếng Việt & Đồng nghĩa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Discipline</td><td>n.</td><td>Ngành học, lĩnh vực (Field/Branch)</td></tr>
+                        <tr><td>Extinction</td><td>n.</td><td>Sự tuyệt chủng, biến mất (Demise/Disappearance)</td></tr>
+                        <tr><td>Universal</td><td>adj.</td><td>Phổ quát, chung (Widespread/Global)</td></tr>
+                        <tr><td>Document</td><td>v.</td><td>Ghi chép lại tài liệu (Record/Archive)</td></tr>
+                        <tr><td>Revitalization</td><td>n.</td><td>Sự hồi sinh (Revival/Restoration)</td></tr>
+                        <tr><td>Imminent</td><td>adj.</td><td>Sắp xảy ra (Impending/Approaching)</td></tr>
+                        <tr><td>Multilingualism</td><td>n.</td><td>Sự đa ngôn ngữ (Speaking multiple tongues)</td></tr>
+                        <tr><td>Inferior</td><td>adj.</td><td>Kém cỏi hơn (Subordinate/Lesser)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- Right Pane: Exercises -->
+        <div class="pane pane-right" id="exercise-pane">
+            
+            <!-- Group 1: Matching Headings (27-33) -->
+            <div class="question-group">
+                <div class="group-title">Questions 27–33: Matching Headings</div>
+                <p style="font-size: 0.88rem; color: #666; margin-bottom: 14px;">Choose the correct heading for paragraphs from the list below.</p>
+                
+                <div style="background: #eef2f5; padding: 10px; border-radius: 8px; margin-bottom: 16px; font-size: 0.85rem;">
+                    <strong>List of Headings:</strong><br>
+                    i) Inadequate data<br>
+                    ii) Consensus on an Initial recommendation for saving dying out languages<br>
+                    iii) Positive gains in protection efforts<br>
+                    iv) Minimum requirement for saving a language<br>
+                    v) Potential threat to minority languages<br>
+                    vi) A period when there was an absence of real efforts made.<br>
+                    vii) Uncertainty about the success of native language programs.<br>
+                    viii) Lack in confidence in young speakers as a negative factor<br>
+                    ix) Practice in several developing countries<br>
+                    x) Value of minority languages to linguists.<br>
+                    xi) Government participation in language field
+                </div>
+
+                <!-- Q27 -->
+                <div class="question-item" id="q-27">
+                    <div class="question-text">Question 27: Paragraph 27</div>
+                    <select class="select-custom" onchange="checkSelect(27, this.value, 'v')">
+                        <option value="">-- Chọn đáp án --</option>
+                        <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                        <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                        <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option>
+                        <option value="x">x</option><option value="xi">xi</option>
+                    </select>
+                    <div class="explanation-card" id="exp-27"></div>
+                </div>
+
+                <!-- Q28 -->
+                <div class="question-item" id="q-28">
+                    <div class="question-text">Question 28: Paragraph 28</div>
+                    <select class="select-custom" onchange="checkSelect(28, this.value, 'x')">
+                        <option value="">-- Chọn đáp án --</option>
+                        <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                        <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                        <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option>
+                        <option value="x">x</option><option value="xi">xi</option>
+                    </select>
+                    <div class="explanation-card" id="exp-28"></div>
+                </div>
+
+                <!-- Q29 -->
+                <div class="question-item" id="q-29">
+                    <div class="question-text">Question 29: Paragraph 29</div>
+                    <select class="select-custom" onchange="checkSelect(29, this.value, 'iii')">
+                        <option value="">-- Chọn đáp án --</option>
+                        <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                        <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                        <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option>
+                        <option value="x">x</option><option value="xi">xi</option>
+                    </select>
+                    <div class="explanation-card" id="exp-29"></div>
+                </div>
+
+                <!-- Q30 -->
+                <div class="question-item" id="q-30">
+                    <div class="question-text">Question 30: Paragraph 30</div>
+                    <select class="select-custom" onchange="checkSelect(30, this.value, 'i')">
+                        <option value="">-- Chọn đáp án --</option>
+                        <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                        <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                        <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option>
+                        <option value="x">x</option><option value="xi">xi</option>
+                    </select>
+                    <div class="explanation-card" id="exp-30"></div>
+                </div>
+
+                <!-- Q31 -->
+                <div class="question-item" id="q-31">
+                    <div class="question-text">Question 31: Paragraph 31</div>
+                    <select class="select-custom" onchange="checkSelect(31, this.value, 'vii')">
+                        <option value="">-- Chọn đáp án --</option>
+                        <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                        <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                        <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option>
+                        <option value="x">x</option><option value="xi">xi</option>
+                    </select>
+                    <div class="explanation-card" id="exp-31"></div>
+                </div>
+
+                <!-- Q32 -->
+                <div class="question-item" id="q-32">
+                    <div class="question-text">Question 32: Paragraph 32</div>
+                    <select class="select-custom" onchange="checkSelect(32, this.value, 'viii')">
+                        <option value="">-- Chọn đáp án --</option>
+                        <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                        <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                        <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option>
+                        <option value="x">x</option><option value="xi">xi</option>
+                    </select>
+                    <div class="explanation-card" id="exp-32"></div>
+                </div>
+
+                <!-- Q33 -->
+                <div class="question-item" id="q-33">
+                    <div class="question-text">Question 33: Paragraph 33</div>
+                    <select class="select-custom" onchange="checkSelect(33, this.value, 'ii')">
+                        <option value="">-- Chọn đáp án --</option>
+                        <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                        <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                        <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option>
+                        <option value="x">x</option><option value="xi">xi</option>
+                    </select>
+                    <div class="explanation-card" id="exp-33"></div>
+                </div>
+            </div>
+
+            <!-- Group 2: Matching People (34-38) -->
+            <div class="question-group">
+                <div class="group-title">Questions 34–38: Matching People</div>
+                <p style="font-size: 0.88rem; color: #666; margin-bottom: 14px;">Match the people (A-F) with opinions or deeds below.</p>
+                <div style="background: #eef2f5; padding: 10px; border-radius: 8px; margin-bottom: 16px; font-size: 0.85rem;">
+                    <strong>List of People:</strong> A) Nicholas Ostler | B) Michael Krauss | C) Joseph E. Grimes | D) Sarah G. Thomason | E) Keneth L. Hale | F) Douglas H. Whalen
+                </div>
+
+                <!-- Q34 -->
+                <div class="question-item" id="q-34">
+                    <div class="question-text">34. Reported about the success of a language conservation practice in Hawaii</div>
+                    <select class="select-custom" onchange="checkSelect(34, this.value, 'C')">
+                        <option value="">-- Chọn --</option>
+                        <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                        <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                    </select>
+                    <div class="explanation-card" id="exp-34"></div>
+                </div>
+
+                <!-- Q35 -->
+                <div class="question-item" id="q-35">
+                    <div class="question-text">35. Predicted that many languages would disappear soon</div>
+                    <select class="select-custom" onchange="checkSelect(35, this.value, 'B')">
+                        <option value="">-- Chọn --</option>
+                        <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                        <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                    </select>
+                    <div class="explanation-card" id="exp-35"></div>
+                </div>
+
+                <!-- Q36 -->
+                <div class="question-item" id="q-36">
+                    <div class="question-text">36. Experienced loss of languages he had worked on personally</div>
+                    <select class="select-custom" onchange="checkSelect(36, this.value, 'E')">
+                        <option value="">-- Chọn --</option>
+                        <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                        <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                    </select>
+                    <div class="explanation-card" id="exp-36"></div>
+                </div>
+
+                <!-- Q37 -->
+                <div class="question-item" id="q-37">
+                    <div class="question-text">37. Raised language funds in England</div>
+                    <select class="select-custom" onchange="checkSelect(37, this.value, 'A')">
+                        <option value="">-- Chọn --</option>
+                        <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                        <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                    </select>
+                    <div class="explanation-card" id="exp-37"></div>
+                </div>
+
+                <!-- Q38 -->
+                <div class="question-item" id="q-38">
+                    <div class="question-text">38. Not enough effort on saving languages until recent work</div>
+                    <select class="select-custom" onchange="checkSelect(38, this.value, 'D')">
+                        <option value="">-- Chọn --</option>
+                        <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                        <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                    </select>
+                    <div class="explanation-card" id="exp-38"></div>
+                </div>
+
+            </div>
+
+            <!-- Group 3: Multiple Choice (39-40) -->
+            <div class="question-group">
+                <div class="group-title">Questions 39–40: Multiple Choice</div>
+                
+                <!-- Q39 -->
+                <div class="question-item" id="q-39">
+                    <div class="question-text">39. What is the real result of the master-apprentice program sponsored by The Ford Foundation?</div>
+                    <div class="mcq-options" id="mcq-39">
+                        <!-- Dynamic Options via JS Shuffle -->
+                    </div>
+                    <div class="explanation-card" id="exp-39"></div>
+                </div>
+
+                <!-- Q40 -->
+                <div class="question-item" id="q-40">
+                    <div class="question-text">40. What should majority language speakers do according to the last paragraph?</div>
+                    <div class="mcq-options" id="mcq-40">
+                        <!-- Dynamic Options via JS Shuffle -->
+                    </div>
+                    <div class="explanation-card" id="exp-40"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Score Result -->
+    <div class="modal-overlay" id="score-modal">
+        <div class="modal-card">
+            <h2>🎉 KẾT QUẢ BÀI THI</h2>
+            <div class="score-big" id="score-text">0/14</div>
+            <div class="band-badge" id="band-text">BAND 0.0</div>
+            <p class="feedback-text" id="feedback-text">Hãy tiếp tục cố gắng nhé!</p>
+            <button class="btn-3d btn-primary" onclick="closeModal()">Đóng & Xem chi tiết</button>
+        </div>
+    </div>
+
+    <script>
+        // Data Explanations
+        const EXPLANATIONS = {
+            27: {
+                ans: "v) Potential threat to minority languages",
+                loc: "para-27",
+                quote: "nine tenths of the linguistic diversity of humankind would probably be doomed to extinction.",
+                trans: "9/10 sự đa dạng ngôn ngữ của nhân loại sẽ bị đe dọa tuyệt chủng.",
+                syn: "demise/extinction = threat"
+            },
+            28: {
+                ans: "x) Value of minority languages to linguists.",
+                loc: "para-28",
+                quote: "To start, there is scientific self-interest... the wider the portfolio of languages you study, the more likely you are to get the right answers.",
+                trans: "Giá trị khoa học của ngôn ngữ hiếm giúp trả lời các câu hỏi cơ bản trong ngôn ngữ học.",
+                syn: "scientific self-interest = value to linguists"
+            },
+            29: {
+                ans: "iii) Positive gains in protection efforts",
+                loc: "para-29",
+                quote: "But there are encouraging signs that the field has turned a corner.",
+                trans: "Có những tín hiệu tích cực cho thấy nỗ lực bảo vệ đã có bước ngoặt.",
+                syn: "encouraging signs = positive gains"
+            },
+            30: {
+                ans: "i) Inadequate data",
+                loc: "para-30",
+                quote: "For the vast majority of these languages, there is little or no record of their grammar, vocabulary...",
+                trans: "Dữ liệu thu thập được về các ngôn ngữ này là cực kỳ thiếu sót.",
+                syn: "little or no record = inadequate data"
+            },
+            31: {
+                ans: "vii) Uncertainty about the success of native language programs.",
+                loc: "para-31",
+                quote: "there seems to be no way to predict with certainty what will work where.",
+                trans: "Không có cách nào để dự đoán chắc chắn chiến lược nào sẽ hoạt động hiệu quả.",
+                syn: "no way to predict = uncertainty"
+            },
+            32: {
+                ans: "viii) Lack in confidence in young speakers as a negative factor",
+                loc: "para-32",
+                quote: "speakers begin to have collective doubts... Kids pick up on the attitude and prefer the dominant language.",
+                trans: "Sự thiếu tự tin và nghi ngờ về tầm quan trọng của ngôn ngữ dẫn tới việc trẻ em bỏ dần tiếng mẹ đẻ.",
+                syn: "collective doubts = lack in confidence"
+            },
+            33: {
+                ans: "ii) Consensus on an Initial recommendation for saving dying out languages",
+                loc: "para-33",
+                quote: "Linguists agree that ultimately, the answer to the problem of language extinction is multilingualism.",
+                trans: "Các nhà ngôn ngữ học đồng thuận rằng giải pháp ban đầu là đa ngôn ngữ.",
+                syn: "agree = consensus; first step = initial recommendation"
+            },
+            34: {
+                ans: "C (Joseph E. Grimes)",
+                loc: "para-31",
+                quote: "A similar approach was tried in Hawaii, with some success... reports Joseph E. Grimes",
+                trans: "Joseph E. Grimes báo cáo về sự thành công của chương trình bảo tồn ở Hawaii.",
+                syn: "reports success = reported about success"
+            },
+            35: {
+                ans: "B (Michael Krauss)",
+                loc: "para-27",
+                quote: "Michael Krauss sent a shudder... prediction that half the 6,000 or so languages... would cease to be uttered",
+                trans: "Michael Krauss dự đoán một nửa ngôn ngữ sẽ biến mất.",
+                syn: "prediction = predicted"
+            },
+            36: {
+                ans: "E (Keneth L. Hale)",
+                loc: "para-27",
+                quote: "Keneth L. Hale... noted... eight languages on which he had done fieldwork had since passed into extinction.",
+                trans: "Keneth L. Hale chứng kiến 8 ngôn ngữ ông từng nghiên cứu bị tuyệt chủng.",
+                syn: "done fieldwork = worked on personally"
+            },
+            37: {
+                ans: "A (Nicholas Ostler)",
+                loc: "para-example",
+                quote: "A similar foundation in England, directed by Nicholas Ostler, has raised just $8,000",
+                trans: "Nicholas Ostler điều hành quỹ tại Anh.",
+                syn: "in England = foundation in England"
+            },
+            38: {
+                ans: "D (Sarah G. Thomason)",
+                loc: "para-example",
+                quote: "the field has accomplished depressingly little... says Sarah G Thomason",
+                trans: "Sarah G. Thomason nhận định chưa có đủ nỗ lực cho đến gần đây.",
+                syn: "depressingly little = not enough effort"
+            },
+            39: {
+                ans: "C. Postpone the dying date for some endangered languages",
+                loc: "para-29",
+                quote: "But at least we prolong the survival of the language.",
+                trans: "Kết quả thực tế là kéo dài thêm thời gian tồn tại của ngôn ngữ.",
+                syn: "prolong survival = postpone dying date"
+            },
+            40: {
+                ans: "D. They should be more tolerant of minority language speakers",
+                loc: "para-33",
+                quote: "persuade the world's majorities to allow the minorities among them to speak with their own voices.",
+                trans: "Thuyết phục người nói ngôn ngữ đa số bao dung, tôn trọng tiếng nói của người thiểu số.",
+                syn: "allow to speak = more tolerant"
+            }
+        };
+
+        // MCQ Raw Options
+        const MCQ_DATA = {
+            39: [
+                { key: "A", text: "A. Teach children how to speak native languages", correct: false },
+                { key: "B", text: "B. Revive some endangered languages in California", correct: false },
+                { key: "C", text: "C. Postpone the dying date for some endangered languages", correct: true },
+                { key: "D", text: "D. Increase communication between students", correct: false }
+            ],
+            40: [
+                { key: "A", text: "A. They should teach their children endangered languages", correct: false },
+                { key: "B", text: "B. They should learn at least four languages", correct: false },
+                { key: "C", text: "C. They should show their loyalty to a dying language", correct: false },
+                { key: "D", text: "D. They should be more tolerant of minority language speakers", correct: true }
+            ]
+        };
+
+        let userAnswers = {};
+        let timerInterval = null;
+        let timeLeft = 1200; // 20 mins
+        let isTimerRunning = false;
+
+        // Sound Synthesis (Web Audio API)
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'correct') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } else {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(140, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+            }
+        }
+
+        // Shuffle Utility
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Render MCQs
+        function initMCQs() {
+            [39, 40].forEach(qNum => {
+                const container = document.getElementById(`mcq-${qNum}`);
+                const shuffled = shuffleArray(MCQ_DATA[qNum]);
+                container.innerHTML = '';
+                shuffled.forEach(opt => {
+                    const btn = document.createElement('div');
+                    btn.className = 'mcq-option';
+                    btn.innerText = opt.text;
+                    btn.onclick = () => selectMCQ(qNum, opt, btn);
+                    container.appendChild(btn);
+                });
+            });
+        }
+
+        function selectMCQ(qNum, option, element) {
+            const container = document.getElementById(`mcq-${qNum}`);
+            const allOpts = container.querySelectorAll('.mcq-option');
+            allOpts.forEach(el => el.classList.remove('selected-correct', 'selected-wrong'));
+
+            if (option.correct) {
+                element.classList.add('selected-correct');
+                playSound('correct');
+                triggerConfetti();
+                userAnswers[qNum] = true;
+            } else {
+                element.classList.add('selected-wrong');
+                playSound('wrong');
+                userAnswers[qNum] = false;
+            }
+
+            renderExplanation(qNum);
+            updateProgress();
+        }
+
+        function checkSelect(qNum, selected, correctVal) {
+            if (!selected) return;
+            if (selected === correctVal) {
+                playSound('correct');
+                triggerConfetti();
+                userAnswers[qNum] = true;
+            } else {
+                playSound('wrong');
+                userAnswers[qNum] = false;
+            }
+            renderExplanation(qNum);
+            updateProgress();
+        }
+
+        function renderExplanation(qNum) {
+            const data = EXPLANATIONS[qNum];
+            const card = document.getElementById(`exp-${qNum}`);
+            card.style.display = 'block';
+            card.innerHTML = `
+                <div class="exp-section"><span class="exp-title">1. ĐÁP ÁN:</span> <strong>${data.ans}</strong></div>
+                <div class="exp-section"><span class="exp-title">2. ĐOẠN CHỨA ĐÁP ÁN:</span> "${data.quote}"</div>
+                <div class="exp-section"><span class="exp-title">3. DỊCH NGHĨA:</span> ${data.trans}</div>
+                <div class="exp-section"><span class="exp-title">4. SYNONYMS:</span> <em>${data.syn}</em></div>
+                <button class="btn-locate" onclick="scrollToEvidence('${data.loc}')">🎯 Định vị dẫn chứng</button>
+            `;
+        }
+
+        function scrollToEvidence(elementId) {
+            const target = document.getElementById(elementId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                target.classList.add('target-highlight');
+                setTimeout(() => target.classList.remove('target-highlight'), 2000);
+            }
+        }
+
+        function toggleTranslation(id) {
+            const box = document.getElementById(id);
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Timer Logic
+        function toggleTimer() {
+            const btn = document.getElementById('btn-timer-toggle');
+            if (isTimerRunning) {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                btn.innerText = '▶ TIẾP TỤC TÍNH GIỜ';
+                btn.className = 'btn-3d btn-warning';
+            } else {
+                isTimerRunning = true;
+                btn.innerText = '⏸ TẠM DỪNG';
+                btn.className = 'btn-3d btn-primary';
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        alert('Đã hết giờ làm bài, vui lòng nộp bài nhé!');
+                        submitTest();
+                    }
+                }, 1000);
+            }
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const secs = (timeLeft % 60).toString().padStart(2, '0');
+            document.getElementById('timer').innerText = `${mins}:${secs}`;
+        }
+
+        function updateProgress() {
+            const count = Object.keys(userAnswers).length;
+            const pct = (count / 14) * 100;
+            document.getElementById('progress-fill').style.width = `${pct}%`;
+        }
+
+        // Band Score Conversion
+        function calculateBand(score) {
+            // Mapping for 14 questions scaled effectively
+            if (score >= 13) return "9.0";
+            if (score >= 12) return "8.5";
+            if (score >= 11) return "8.0";
+            if (score >= 10) return "7.5";
+            if (score >= 9) return "7.0";
+            if (score >= 8) return "6.5";
+            if (score >= 7) return "6.0";
+            if (score >= 6) return "5.5";
+            if (score >= 5) return "5.0";
+            return "4.5 trở xuống";
+        }
+
+        function submitTest() {
+            let correctCount = 0;
+            Object.values(userAnswers).forEach(val => {
+                if (val) correctCount++;
+            });
+
+            const band = calculateBand(correctCount);
+            document.getElementById('score-text').innerText = `${correctCount}/14`;
+            document.getElementById('band-text').innerText = `BAND DỰ KIẾN: ${band}`;
+
+            let feedback = "Cố gắng luyện tập thêm nhé!";
+            if (correctCount >= 12) feedback = "Xuất sắc! Phong độ đạt IELTS 8.0+!";
+            else if (correctCount >= 9) feedback = "Làm rất tốt! Tiếp tục phát huy nhé!";
+
+            document.getElementById('feedback-text').innerText = feedback;
+            document.getElementById('score-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('score-modal').style.display = 'none';
+        }
+
+        // Simple Confetti Animation
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    size: Math.random() * 8 + 4,
+                    speedY: Math.random() * 5 + 2
+                });
+            }
+
+            let animationFrame;
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(p.x, p.y, p.size, p.size);
+                });
+                if (particles.some(p => p.y < canvas.height)) {
+                    animationFrame = requestAnimationFrame(render);
+                } else {
+                    cancelAnimationFrame(animationFrame);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            render();
+        }
+
+        window.onload = () => {
+            initMCQs();
+        };
+    </script>
+</body>
+</html>
